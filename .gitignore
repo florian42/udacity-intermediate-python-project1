@@ -1,3 +1,5 @@
 venv
 .idea
 .pytest_cache
+/cad_exploration.ipynb
+/.ipynb_checkpoints/cad_exploration-checkpoint.ipynb
