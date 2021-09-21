@@ -89,7 +89,7 @@ class NEODatabase:
         """
         return next((neo for neo in self._neos if neo.name == name), None)
 
-    def query(self, filters=()):
+    def query(self, filters):
         """Query close approaches to generate those that match a collection of filters.
 
         This generates a stream of `CloseApproach` objects that match all of the
@@ -105,4 +105,13 @@ class NEODatabase:
         """
         # TODO: Generate `CloseApproach` objects that match all of the filters.
         for approach in self._approaches:
-            yield approach
+            if not len(filters):
+                yield approach
+            else:
+                if all(
+                    [
+                        attribute_filter(approach)
+                        for attribute_filter in filters
+                    ]
+                ):
+                    yield approach

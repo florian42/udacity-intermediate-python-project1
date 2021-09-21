@@ -452,13 +452,13 @@ class NEOShell(cmd.Cmd):
         # Run the `inspect` subcommand.
         query(self.db, args)
 
-    def do_EOF(self, _arg):
+    def do_end_of_file(self, _arg):
         """Exit the interactive session."""
         return True
 
     # Alternative ways to quit.
-    do_exit = do_EOF
-    do_quit = do_EOF
+    do_exit = do_end_of_file
+    do_quit = do_end_of_file
 
     def precmd(self, line):
         """Watch for changes to the files in this project."""

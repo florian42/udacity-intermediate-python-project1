@@ -16,10 +16,9 @@ import datetime
 import pathlib
 import unittest
 
+from create_filters import create_filters
 from database import NEODatabase
 from extract import load_neos, load_approaches
-from filters import create_filters
-
 
 TESTS_ROOT = (pathlib.Path(__file__).parent).resolve()
 TEST_NEO_FILE = TESTS_ROOT / "test-neos-2020.csv"
