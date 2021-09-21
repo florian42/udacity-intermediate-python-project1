@@ -72,10 +72,9 @@ class NearEarthObject:
         # Use this object's attributes to return a human-readable string representation.
         # The project instructions include one possibility. Peek at the __repr__
         # method for examples of advanced string formatting.
-        return (
-            f"NearEarthObject(designation={self.designation!r}, name={self.name!r}, "
-            f"diameter={self.diameter:.3f}, hazardous={self.hazardous!r})"
-        )
+
+        hazardous_string = "is" if self.hazardous else "is not"
+        return f"NEO {self.fullname} has a diameter of {self.diameter} km and {hazardous_string} potentially hazardous."
 
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""
@@ -150,8 +149,8 @@ class CloseApproach:
         # The project instructions include one possibility. Peek at the __repr__
         # method for examples of advanced string formatting.
         return (
-            f"CloseApproach(time={self.time_str!r}, distance={self.distance:.2f}, "
-            f"velocity={self.velocity:.2f}, neo={self.neo!r})"
+            f"On {self.time_str} '{self.neo.fullname}' approaches Earth at a distance of {self.distance:.2f}"
+            "au and a velocity of {self.velocity:.2f} km/s."
         )
 
     def __repr__(self):

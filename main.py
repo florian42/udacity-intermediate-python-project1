@@ -44,9 +44,9 @@ import shlex
 import sys
 import time
 
+from create_filters import create_filters, limit
 from extract import load_neos, load_approaches
 from database import NEODatabase
-from filters import create_filters, limit
 from write import write_to_csv, write_to_json
 
 
