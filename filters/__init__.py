@@ -2,7 +2,7 @@ from .DateFilter import DateFilter
 from .AttributeFilter import AttributeFilter
 from .DiameterMinFilter import DiameterMinFilter
 from .DiameterMaxFilter import DiameterMaxFilter
-from .DistanceMax import DistanceMaxFilter
+from .DistanceMaxFilter import DistanceMaxFilter
 from .DistanceMinFilter import DistanceMinFilter
 from .EndDateFilter import EndDateFilter
 from .HazardousFilter import HazardousFilter
