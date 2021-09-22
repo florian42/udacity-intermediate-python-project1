@@ -93,7 +93,7 @@ def create_filters(
     if hazardous is not None:
         filters.append(HazardousFilter(hazardous))
 
-    return filters
+    return tuple(filters)
 
 
 def limit(iterator, n=None):

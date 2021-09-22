@@ -47,7 +47,12 @@ class NearEarthObject:
         # and a missing diameter being represented by `float('nan')`.
         self.designation = None if designation == "None" else designation
         self.name = name if name else None
-        self.diameter = float(diameter) if diameter else float("nan")
+
+        try:
+            self.diameter = float(diameter)
+        except ValueError:
+            self.diameter = float("nan")
+
         self.hazardous = True if hazardous == "Y" else False
 
         # Create an empty initial collection of linked approaches.
@@ -60,6 +65,7 @@ class NearEarthObject:
         return f"{self.name} ({self.designation})"
 
     def serialize(self):
+        """Return a dictionary containing relevant attributes for writing to CSV or JSON."""
         return {
             "name": self.name,
             "diameter_km": self.diameter,
@@ -135,6 +141,7 @@ class CloseApproach:
         return datetime_to_str(self.time)
 
     def serialize(self, csv=True):
+        """Return a dictionary containing relevant attributes for writing to CSV or JSON."""
         neo = self.neo.serialize()
         approach = {
             "datetime_utc": datetime_to_str(self.time),
