@@ -16,7 +16,7 @@ import datetime
 import pathlib
 import unittest
 
-from create_filters import create_filters
+from filters import create_filters
 from database import NEODatabase
 from extract import load_neos, load_approaches
 
@@ -48,7 +48,7 @@ class TestQuery(unittest.TestCase):
         )
 
     ###############################################
-    # Single filters and pairs of related filters #
+    # Single filter_classes and pairs of related filter_classes #
     ###############################################
 
     def test_query_approaches_on_march_2(self):
@@ -424,7 +424,7 @@ class TestQuery(unittest.TestCase):
         )
 
     ###########################
-    # Combinations of filters #
+    # Combinations of filter_classes #
     ###########################
 
     def test_query_approaches_on_march_2_with_max_distance(self):

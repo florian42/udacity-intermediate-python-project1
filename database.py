@@ -93,17 +93,17 @@ class NEODatabase:
         return self._neos_by_name.get(name)
 
     def query(self, filters):
-        """Query close approaches to generate those that match a collection of filters.
+        """Query close approaches to generate those that match a collection of filter_classes.
 
         This generates a stream of `CloseApproach` objects that match all of the
-        provided filters.
+        provided filter_classes.
 
         If no arguments are provided, generate all known close approaches.
 
         The `CloseApproach` objects are generated in internal order, which isn't
         guaranteed to be sorted meaningfully, although is often sorted by time.
 
-        :param filters: A collection of filters capturing user-specified criteria.
+        :param filters: A collection of filter_classes capturing user-specified criteria.
         :return: A stream of matching `CloseApproach` objects.
         """
         for approach in self._approaches:

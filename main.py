@@ -44,7 +44,7 @@ import shlex
 import sys
 import time
 
-from create_filters import create_filters, limit
+from filters import create_filters, limit
 from extract import load_neos, load_approaches
 from database import NEODatabase
 from write import write_to_csv, write_to_json
@@ -126,7 +126,7 @@ def make_parser():
     query = subparsers.add_parser(
         "query",
         description="Query for close approaches that "
-        "match a collection of filters.",
+        "match a collection of filter_classes.",
     )
     filters = query.add_argument_group(
         "Filters",
@@ -282,7 +282,7 @@ def inspect(database, pdes=None, name=None, verbose=False):
 def query(database, args):
     """Perform the `query` subcommand.
 
-    Create a collection of filters with `create_filters` and supply them to the
+    Create a collection of filter_classes with `create_filters` and supply them to the
     database's `query` method to produce a stream of matching results.
 
     If an output file wasn't given, print these results to stdout, limiting to
@@ -293,7 +293,7 @@ def query(database, args):
     :param database: The `NEODatabase` containing data on NEOs and their close approaches.
     :param args: All arguments from the command line, as parsed by the top-level parser.
     """
-    # Construct a collection of filters from arguments supplied at the command line.
+    # Construct a collection of filter_classes from arguments supplied at the command line.
     filters = create_filters(
         date=args.date,
         start_date=args.start_date,
@@ -306,7 +306,7 @@ def query(database, args):
         diameter_max=args.diameter_max,
         hazardous=args.hazardous,
     )
-    # Query the database with the collection of filters.
+    # Query the database with the collection of filter_classes.
     results = database.query(filters)
 
     if not args.outfile:
@@ -431,7 +431,7 @@ class NEOShell(cmd.Cmd):
 
             (neo) query --date 2020-01-01
 
-        You can use any of the other filters: `--start-date`, `--end-date`,
+        You can use any of the other filter_classes: `--start-date`, `--end-date`,
         `--min-distance`, `--max-distance`, `--min-velocity`, `--max-velocity`,
         `--min-diameter`, `--max-diameter`, `--hazardous`, `--not-hazardous`.
 
