@@ -50,9 +50,7 @@ class NEODatabase:
         approaches_by_designation = defaultdict(list)
 
         for approach in self._approaches:
-            approach.neo = self._neos_by_designation.get(
-                approach._designation, None
-            )
+            approach.neo = self._neos_by_designation.get(approach._designation)
             approaches_by_designation[approach._designation].append(approach)
 
         neos_by_name = {}
@@ -109,11 +107,7 @@ class NEODatabase:
         for approach in self._approaches:
             if not len(filters):
                 yield approach
-            else:
-                if all(
-                    [
-                        attribute_filter(approach)
-                        for attribute_filter in filters
-                    ]
-                ):
-                    yield approach
+            elif all(
+                attribute_filter(approach) for attribute_filter in filters
+            ):
+                yield approach
